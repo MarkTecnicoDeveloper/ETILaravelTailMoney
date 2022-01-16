@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-md text-gray-800 leading-tight">
-            {{ __('Home') }} 
+            {{ __('Home') }} >> {{ __('Balance') }}
         </h2>
     </x-slot>
 
@@ -29,12 +29,28 @@
         </ul>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+    <div class="px-6 py-6">
+        <div class="bg-white rounded-lg px-4 py-4">
+            <div class="flex flex-row h-[45px] items-center">
+                <h4 class="text-green-900 font-bold w-4/5">Current balance</h4>
+                <div class="w-1/5 text-right">
+                    <a href="#" class="bg-blue-600 rounded-lg px-4 py-2 text-xs text-white mr-2">
+                        <i class="fas fa-cart-plus"></i> RELOAD
+                    </a>
+                    <a href="#" class="bg-red-600 rounded-lg px-4 py-2 text-xs text-white mr-2">
+                        <i class="fas fa-cart-arrow-down"></i> EXTRACT
+                    </a>
                 </div>
+            </div>
+            <hr>
+            <div class="font-bold py-2 text-2xl">
+                R$ {{ number_format($amount, 2, '.', '') }}
+            </div>
+            <hr>
+            <div class="text-sm flex justify-end py-2 cursor-pointer">
+                <a href="">
+                    More Info >>
+                </a>
             </div>
         </div>
     </div>

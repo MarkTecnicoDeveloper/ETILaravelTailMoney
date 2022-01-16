@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\BalanceConroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard.home.index');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard/balance', [BalanceConroller::class, 'index'])->middleware(['auth'])->name('dashboard.balance');
 
 require __DIR__.'/auth.php';
