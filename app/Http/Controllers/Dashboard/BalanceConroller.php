@@ -75,6 +75,11 @@ class BalanceConroller extends Controller
                     ->back()
                     ->with('error', 'Must be diferent user');
 
-        return view('dashboard.balance.transfer-confirm', compact($sender));
+        return view('dashboard.balance.transfer-confirm', compact('sender'));
+    }
+
+    public function transferStore(Request $request)
+    {
+        dd($request->all());
     }
 }
