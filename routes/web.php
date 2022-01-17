@@ -27,5 +27,7 @@ Route::get('/dashboard/deposit', [BalanceConroller::class, 'deposit'])->middlewa
 Route::post('/dashboard/deposit', [BalanceConroller::class, 'depositStore'])->middleware(['auth'])->name('deposit.store');
 Route::get('/dashboard/withdraw', [BalanceConroller::class, 'withdraw'])->middleware(['auth'])->name('balance.withdraw');
 Route::post('/dashboard/withdraw', [BalanceConroller::class, 'withdrawStore'])->middleware(['auth'])->name('withdraw.store');
+Route::get('/dashboard/transfer', [BalanceConroller::class, 'transfer'])->middleware(['auth'])->name('balance.transfer');
+Route::post('/dashboard/confirm-transfer', [BalanceConroller::class, 'confirmTransfer'])->middleware(['auth'])->name('confirm.transfer');
 
 require __DIR__.'/auth.php';
