@@ -23,5 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/dashboard/balance', [BalanceConroller::class, 'index'])->middleware(['auth'])->name('dashboard.balance');
+Route::get('/dashboard/deposit', [BalanceConroller::class, 'deposit'])->middleware(['auth'])->name('balance.deposit');
+Route::post('/dashboard/deposit', [BalanceConroller::class, 'depositStore'])->middleware(['auth'])->name('deposit.store');
 
 require __DIR__.'/auth.php';
