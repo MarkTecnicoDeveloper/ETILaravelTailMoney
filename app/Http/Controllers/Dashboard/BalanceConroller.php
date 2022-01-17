@@ -36,4 +36,24 @@ class BalanceConroller extends Controller
                 ->back()
                 ->with('error', $response['message']);
     }
+
+    public function withdraw()
+    {
+        return view('dashboard.balance.withdraw');
+    }
+
+    public function withdrawStore(Request $request)
+    {
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $response = $balance->withdraw($request->extractValue);
+
+        if($response['success'])
+            return redirect()
+                ->route('dashboard.balance')
+                ->with('success', $response['message']);
+        
+        return redirect()
+                ->back()
+                ->with('error', $response['message']);
+    }
 }
