@@ -75,11 +75,29 @@ class BalanceConroller extends Controller
                     ->back()
                     ->with('error', 'Must be diferent user');
 
-        return view('dashboard.balance.transfer-confirm', compact('sender'));
+        $balance = auth()->user()->balance;
+
+        return view('dashboard.balance.transfer-confirm', compact('sender', 'balance'));
     }
 
-    public function transferStore(Request $request)
+    public function transferStore(Request $request, User $user)
     {
-        dd($request->all());
+        
+        if(!$sender = $user->find($request->sender_id))
+            return redirect()
+                ->route('balance.transfer')
+                ->with('error', 'User not found');
+
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $response = $balance->transfer($request->transferValue, $sender);
+
+        if($response['success'])
+            return redirect()
+                ->route('dashboard.balance')
+                ->with('success', $response['message']);
+        
+        return redirect()
+                ->route('balance.transfer')
+                ->with('error', $response['message']);
     }
 }

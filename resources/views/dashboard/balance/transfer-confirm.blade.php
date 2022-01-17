@@ -38,7 +38,8 @@
 
             @include('dashboard.includes.alerts')
 
-            <p><strong>Recebedor: </strong>{{ $sender->name }}</p>
+            <p><strong>User Destination: </strong>{{ $sender->name }}</p>
+            <p><strong>Your founds: </strong>{{ number_format($balance->amount, 2 , ',', '') }}</p>
 
             <form class="mt-4" method="POST" action="{{ route('transfer.store') }}">
                 @csrf
@@ -46,7 +47,7 @@
                 <input type="hidden" name="sender_id" value="{{ $sender->id }}" />
                 <!-- Email Address -->
                 <div>
-                    <x-input id="email" class="block mt-1 w-full" type="text" name="balance" placeholder="Value:" autofocus />
+                    <x-input id="email" class="block mt-1 w-full" type="text" name="transferValue" placeholder="Value:" autofocus />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
