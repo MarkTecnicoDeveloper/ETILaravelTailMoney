@@ -36,24 +36,24 @@
             </div>
             <hr>
 
-            <table>
-                <thead>
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
                     <tr>
-                        <th>#</th>
-                        <th>Value</th>
-                        <th>Type</th>
-                        <th>Data</th>
-                        <th>Sender</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sender</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-white divide-y divide-gray-200">
                     @forelse($historics as $historic)
                     <tr>
-                        <td>{{ $historic->id }}</td>
-                        <td>{{ number_format($historic->amount, 2, ',', '.') }}</td>
-                        <td>{{ $historic->type }}</td>
-                        <td>{{ $historic->date }}</td>
-                        <td>{{ $historic->user_id_transaction }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $historic->id }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ number_format($historic->amount, 2, ',', '.') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $historic->type }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $historic->date }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $historic->user_id_transaction }}</td>
                     </tr>
                     @empty
                     @endforelse
