@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-md text-gray-800 leading-tight">
-            {{ __('Home') }} >> {{ __('Deposit') }}
+            {{ __('Home') }} >> {{ __('Historics') }}
         </h2>
     </x-slot>
 
@@ -32,26 +32,33 @@
     <div class="px-6 py-6">
         <div class="bg-white rounded-lg px-4 py-4">
             <div class="flex flex-row h-[45px] items-center">
-                <h4 class="text-green-900 font-bold w-4/5">Make transfer (please, select the receiber)</h4>
+                <h4 class="text-green-900 font-bold w-3/5">Historics movements</h4>
             </div>
             <hr>
 
-            @include('dashboard.includes.alerts')
-
-            <form class="mt-4" method="POST" action="{{ route('confirm.transfer') }}">
-                @csrf
-
-                <!-- Email Address -->
-                <div>
-                    <x-input id="email" class="block mt-1 w-full" type="text" name="sender" placeholder="Enter the name or email of receiber" autofocus />
-                </div>
-
-                <div class="flex items-center justify-end mt-4">
-                    <x-button class="ml-3">
-                        {{ __('Next') }}
-                    </x-button>
-                </div>
-            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Value</th>
+                        <th>Type</th>
+                        <th>Data</th>
+                        <th>Sender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($historics as $historic)
+                    <tr>
+                        <td>{{ $historic->id }}</td>
+                        <td>{{ number_format($historic->amount, 2, ',', '.') }}</td>
+                        <td>{{ $historic->type }}</td>
+                        <td>{{ $historic->date }}</td>
+                        <td>{{ $historic->user_id_transaction }}</td>
+                    </tr>
+                    @empty
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 </x-app-layout>

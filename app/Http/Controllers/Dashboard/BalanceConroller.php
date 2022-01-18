@@ -100,4 +100,11 @@ class BalanceConroller extends Controller
                 ->route('balance.transfer')
                 ->with('error', $response['message']);
     }
+
+    public function historic()
+    {
+        $historics = auth()->user()->historics()->get();
+
+        return view('dashboard.balance.historics', compact('historics'));
+    }
 }

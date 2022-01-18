@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="hover:bg-slate-500 px-4 py-4 rounded-lg ease-in duration-300 cursor-pointer mb-2">
-                <a href="">
+                <a href="{{ route('dashboard.historic') }}">
                     <i class="fas fa-history"></i> Historic
                 </a>
             </li>
