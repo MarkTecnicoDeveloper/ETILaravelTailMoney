@@ -10,6 +10,8 @@ use App\Models\User;
 
 class BalanceConroller extends Controller
 {
+    private $totalPage = 1;
+
     public function index()
     {
         $balance = auth()->user()->balance;
@@ -103,7 +105,9 @@ class BalanceConroller extends Controller
 
     public function historic()
     {
-        $historics = auth()->user()->historics()->get();
+        $historics = auth()->user()->historics()
+                                    ->with(['userSender'])
+                                    ->paginate($this->totalPage);
 
         return view('dashboard.balance.historics', compact('historics'));
     }

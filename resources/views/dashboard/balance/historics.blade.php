@@ -51,14 +51,22 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $historic->id }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ number_format($historic->amount, 2, ',', '.') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $historic->type }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $historic->type($historic->type) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $historic->date }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $historic->user_id_transaction }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            @if ($historic->user_id_transaction)
+                                {{ $historic->userSender->name }}
+                            @else
+                                -
+                            @endif
+                        </td>
                     </tr>
                     @empty
                     @endforelse
                 </tbody>
             </table>
+
+            {{ $historics->links() }}
         </div>
     </div>
 </x-app-layout>
