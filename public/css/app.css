@@ -630,6 +630,9 @@ select {
 .mb-1 {
   margin-bottom: 0.25rem;
 }
+.mt-1 {
+  margin-top: 0.25rem;
+}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -644,9 +647,6 @@ select {
 }
 .mt-4 {
   margin-top: 1rem;
-}
-.mt-1 {
-  margin-top: 0.25rem;
 }
 .mt-2 {
   margin-top: 0.5rem;
@@ -731,6 +731,9 @@ select {
 }
 .w-3\/5 {
   width: 60%;
+}
+.w-1\/2 {
+  width: 50%;
 }
 .w-full {
   width: 100%;

@@ -35,7 +35,21 @@
                 <h4 class="text-green-900 font-bold w-3/5">Historics movements</h4>
             </div>
             <hr>
-
+            <form action="{{ route('historic.search') }}" method="POST" class="flex flex-row mt-2 mb-2">
+                @csrf
+                <x-input class="block mt-1 w-1/5" type="text" name="id" placeholder="ID" />
+                <x-input class="block mt-1 w-1/5 ml-3" type="date" name="date" />
+                <select name="type" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 w-1/5 ml-3">
+                    <option value="">-- Select Type --</option>
+                    @foreach ($types as $key => $type)
+                        <option value="{{ $key }}">{{ $type }}</option>
+                    @endforeach
+                </select>
+                <x-button class="ml-3 w-1/5 text-center flex justify-center">
+                    {{ __('Find') }}
+                </x-button>
+            </form>
+            <hr>
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
@@ -66,7 +80,11 @@
                 </tbody>
             </table>
 
-            {{ $historics->links() }}
+            @if (isset($dataForm))
+                {{ $historics->appends($dataForm)->links() }}
+            @else
+                {{ $historics->links() }}
+            @endif
         </div>
     </div>
 </x-app-layout>

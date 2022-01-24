@@ -31,5 +31,6 @@ Route::get('/dashboard/transfer', [BalanceConroller::class, 'transfer'])->middle
 Route::post('/dashboard/confirm-transfer', [BalanceConroller::class, 'confirmTransfer'])->middleware(['auth'])->name('confirm.transfer');
 Route::post('/dashboard/transfer', [BalanceConroller::class, 'transferStore'])->middleware(['auth'])->name('transfer.store');
 Route::get('/dashboard/historic', [BalanceConroller::class, 'historic'])->middleware(['auth'])->name('dashboard.historic');
+Route::any('/dashboard/historic-search', [BalanceConroller::class, 'searchHistoric'])->middleware(['auth'])->name('historic.search');
 
 require __DIR__.'/auth.php';
